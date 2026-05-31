@@ -3,68 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fauzi's Link Hub</title>
+    <title>NOP Palangkaraya Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f8fafc; /* Soft slate background */
-            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
-            background-size: 20px 20px;
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Animasi Background Smooth */
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
+        .bg-animated {
+            background: linear-gradient(-45deg, #e0e7ff, #fae8ff, #dbeafe, #f3e8ff);
+            background-size: 400% 400%;
+            animation: gradient 12s ease infinite;
+        }
+
+        /* Sembunyikan scrollbar tapi tetap bisa swipe tipis kalau di HP layarnya kekecilan */
+        ::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 text-slate-800">
-    
-    <div class="max-w-md w-full space-y-8 bg-white/60 backdrop-blur-md p-8 rounded-3xl shadow-sm border border-slate-100">
-        
-        <div class="text-center">
-            <img class="mx-auto h-24 w-24 rounded-full shadow-md border-4 border-white object-cover" 
-                 src="https://ui-avatars.com/api/?name=Fauzi+Ramdani&background=c7d2fe&color=3730a3&bold=true" 
-                 alt="Fauzi Ramdani">
-            <h1 class="mt-4 text-2xl font-bold text-slate-700 tracking-tight">Fauzi Ramdani</h1>
-            <p class="text-sm text-slate-500 mt-1 font-medium">Network Operation & Data Enthusiast</p>
+<!-- h-screen dan overflow-hidden memastikan halaman terkunci di 1 layar -->
+<body class="bg-animated h-screen w-screen overflow-hidden text-slate-800 p-2 sm:p-4 flex flex-col items-center justify-center box-border">
+
+    <!-- Header / Profile Super Compact -->
+    <div class="flex items-center gap-3 mb-3 w-full max-w-6xl px-2 shrink-0">
+        <img class="h-10 w-10 sm:h-12 sm:w-12 rounded-full shadow-sm border-2 border-white object-cover" 
+             src="https://ui-avatars.com/api/?name=Fauzi+Ramdani&background=c7d2fe&color=3730a3&bold=true" alt="Profile">
+        <div>
+            <h1 class="text-sm sm:text-lg font-bold text-slate-700 leading-tight">Fauzi Ramdani</h1>
+            <p class="text-[10px] sm:text-xs text-slate-500 font-medium">Network Operation & Productivity</p>
+        </div>
+    </div>
+
+    <!-- BENTO GRID CONTAINER: Fleksibel, responsive, pembagi porsi layar -->
+    <div class="w-full max-w-6xl flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 shrink-0 min-h-0">
+
+        <!-- 1. Dashboard Kalimantan -->
+        <div class="bg-white/60 backdrop-blur-md rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-sm border border-white/50 flex flex-col h-full">
+            <h2 class="text-[11px] sm:text-sm font-semibold text-slate-700 mb-2 flex items-center gap-1.5 shrink-0">
+                <span>🏝️</span> Dashboard Kaltim
+            </h2>
+            <div class="flex flex-col gap-1.5 flex-1 justify-around">
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                    <span>🚍</span> Harmoni - Transport
+                </a>
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                    <span>📈</span> SQA
+                </a>
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                    <span>⚡</span> Power System
+                </a>
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                    <span>💡</span> Tagihan Listrik
+                </a>
+            </div>
         </div>
 
-        <div id="links-container" class="space-y-4">
-            <p class="text-center text-sm text-slate-500">Memuat link...</p>
+        <!-- 2. Dashboard NOP Palangkaraya (Dibuat span lebih besar di tablet/desktop karena isinya paling banyak) -->
+        <div class="bg-white/60 backdrop-blur-md rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-sm border border-white/50 flex flex-col h-full lg:col-span-2">
+            <h2 class="text-[11px] sm:text-sm font-semibold text-slate-700 mb-2 flex items-center gap-1.5 shrink-0">
+                <span>🏢</span> NOP Palangkaraya
+            </h2>
+            <!-- Grid 2 kolom di dalam card khusus section ini biar ngga memanjang ke bawah -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-1.5 flex-1 content-around">
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                    <span>🏃</span> Tracker Activity
+                </a>
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                    <span>📡</span> Avail. Monitoring
+                </a>
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                    <span>💰</span> Payload & Revenue
+                </a>
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                    <span>💹</span> Profitability
+                </a>
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                    <span>🤝</span> B2B Sites Tracker
+                </a>
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-red-50 hover:text-red-600 transition border border-slate-100 shadow-sm">
+                    <span>🚨</span> Incident Tracker
+                </a>
+            </div>
         </div>
 
-        <script>
-            async function loadLinks() {
-                const container = document.getElementById('links-container');
-                try {
-                    // Manggil API Python yang udah kita bikin
-                    const response = await fetch('/api/links');
-                    const links = await response.json();
-                    
-                    container.innerHTML = ''; // Bersihin loading text
-                    
-                    // Looping data dari database buat ngebentuk tombol
-                    links.forEach(link => {
-                        const a = document.createElement('a');
-                        a.href = link.url;
-                        a.target = "_blank";
-                        a.className = "group flex items-center justify-center w-full py-3.5 px-4 bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 border border-slate-100 hover:-translate-y-1 hover:border-indigo-200";
-                        
-                        a.innerHTML = `<span class="font-medium text-slate-600 group-hover:text-indigo-600 transition-colors">${link.title}</span>`;
-                        
-                        container.appendChild(a);
-                    });
-                } catch (error) {
-                    console.error("Gagal narik data:", error);
-                    container.innerHTML = '<p class="text-center text-sm text-red-400">Gagal memuat link.</p>';
-                }
-            }
-            
-            // Jalanin fungsi pas halaman dibuka
-            loadLinks();
-        </script>
+        <!-- Kolom Kanan (Bisa di-stack untuk Tracker & Maps) -->
+        <div class="flex flex-col gap-2 sm:gap-3 h-full col-span-2 sm:col-span-1 lg:col-span-1">
+            <!-- 3. Tracker -->
+            <div class="bg-white/60 backdrop-blur-md rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-sm border border-white/50 flex flex-col flex-1">
+                <h2 class="text-[11px] sm:text-sm font-semibold text-slate-700 mb-2 flex items-center gap-1.5 shrink-0">
+                    <span>📋</span> Tracker
+                </h2>
+                <div class="flex flex-col gap-1.5 flex-1 justify-around">
+                    <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                        <span>📝</span> KK NOP
+                    </a>
+                    <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                        <span>📄</span> KK ENOM
+                    </a>
+                    <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                        <span>🚀</span> Improv. Transport
+                    </a>
+                </div>
+            </div>
 
-        <div class="pt-6 mt-6 border-t border-slate-100 text-center">
-           <p class="text-xs text-slate-400 font-medium tracking-wide">Deployed with 🚀 on Vercel</p>
+            <!-- 5. Maps -->
+            <div class="bg-white/60 backdrop-blur-md rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-sm border border-white/50 flex flex-col flex-1">
+                <h2 class="text-[11px] sm:text-sm font-semibold text-slate-700 mb-2 flex items-center gap-1.5 shrink-0">
+                    <span>🗺️</span> Maps
+                </h2>
+                <div class="flex flex-col gap-1.5 flex-1 justify-around">
+                    <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                        <span>🌍</span> By Regional
+                    </a>
+                    <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm">
+                        <span>📍</span> By NOP
+                    </a>
+                </div>
+            </div>
         </div>
+
+        <!-- 4. Tools -->
+        <div class="bg-white/60 backdrop-blur-md rounded-xl sm:rounded-2xl p-2 sm:p-3 shadow-sm border border-white/50 flex flex-col h-full col-span-2 sm:col-span-3 lg:col-span-1">
+            <h2 class="text-[11px] sm:text-sm font-semibold text-slate-700 mb-2 flex items-center gap-1.5 shrink-0">
+                <span>🛠️</span> Tools
+            </h2>
+            <div class="flex flex-col sm:flex-row lg:flex-col gap-1.5 flex-1 justify-around">
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm flex-1">
+                    <span>🔍</span> BBT Analyzer
+                </a>
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm flex-1">
+                    <span>📊</span> SPS Analyzer
+                </a>
+                <a href="#" class="flex items-center gap-2 text-[10px] sm:text-xs bg-white py-1.5 px-2 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition border border-slate-100 shadow-sm flex-1">
+                    <span>📉</span> NW Loss Analyzer
+                </a>
+            </div>
+        </div>
+
     </div>
 
 </body>

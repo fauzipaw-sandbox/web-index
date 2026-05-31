@@ -5,242 +5,329 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOP Palangkaraya Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Menggunakan Montserrat sebagai alternatif terdekat Telkomsel Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        :root {
+            /* Variabel default, akan ditimpa oleh JS saat onload */
+            --bg-color-1: #ED1C24;
+            --bg-color-2: #8A151B;
+            --bg-color-3: #231F20;
+            --bg-color-4: #404040;
+        }
+
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+        }
         
+        /* Animasi Background Merah Telkomsel */
         @keyframes gradient {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
         .bg-animated {
-            background: linear-gradient(-45deg, #e0e7ff, #fae8ff, #dbeafe, #f3e8ff);
+            background: linear-gradient(-45deg, var(--bg-color-1), var(--bg-color-2), var(--bg-color-3), var(--bg-color-4));
             background-size: 400% 400%;
             animation: gradient 12s ease infinite;
         }
+
+        /* Sembunyikan scrollbar */
         ::-webkit-scrollbar { display: none; }
     </style>
 </head>
-<body class="bg-animated h-screen w-screen overflow-hidden text-slate-800 p-2 sm:p-4 flex flex-col items-center justify-center box-border">
+<body class="bg-animated h-screen w-screen overflow-hidden text-slate-800 p-2 sm:p-4 flex flex-col items-center justify-between box-border">
 
-    <!-- Header Section (Logo Telkomsel & Tagline) -->
-    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-2 sm:gap-4 mb-3 w-full max-w-6xl px-2 shrink-0 text-center sm:text-left">
-        <!-- Logo Telkomsel (Pastikan file logo.png ada di folder public/root lo) -->
-        <img class="h-10 sm:h-14 object-contain mx-auto sm:mx-0 drop-shadow-sm" 
-             src="logo.png" alt="Telkomsel Logo">
-        <div class="flex flex-col justify-center">
-            <h1 class="text-sm sm:text-lg font-bold text-slate-800 leading-tight mt-1">Network Operation & Productivity Palangkaraya</h1>
-            <p class="text-[11px] sm:text-sm text-indigo-600 font-bold italic mt-0.5">"Win As Solid Team!"</p>
-        </div>
-    </div>
-
-    <!-- BENTO GRID CONTAINER -->
-    <div class="w-full max-w-6xl flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 shrink-0 min-h-0">
-
-        <!-- 1. Dashboard Kalimantan -->
-        <div class="bg-white/40 backdrop-blur-md rounded-xl p-2 shadow-sm border border-white/60 flex flex-col h-full">
-            <h2 class="text-[12px] sm:text-sm font-bold text-slate-800 mb-1.5 flex items-center gap-1.5 shrink-0 bg-white/50 px-2 py-1 rounded-md">
-                <span>🏝️</span> Dashboard Kalimantan
-            </h2>
-            <div class="flex flex-col gap-1.5 flex-1">
-                <a href="#" data-title="Harmoni - Transport Kalimantan" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1557223562-6c77ef1607bf?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
-                        <span class="text-base shrink-0">🚍</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Harmoni - Transport Kalimantan</span>
-                    </div>
-                </a>
-                <a href="#" data-title="SQA - Kalimantan" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
-                        <span class="text-base shrink-0">📈</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">SQA - Kalimantan</span>
-                    </div>
-                </a>
-                <a href="#" data-title="Power System Assurance - Kalimantan" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
-                        <span class="text-base shrink-0">⚡</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Power System Assurance - Kalimantan</span>
-                    </div>
-                </a>
-                <a href="#" data-title="Tagihan Listrik - Kalimantan" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1521618755572-156ae0cdd74d?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
-                        <span class="text-base shrink-0">💡</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Tagihan Listrik - Kalimantan</span>
-                    </div>
-                </a>
+    <!-- Kontainer Utama Biar Layout Tengah Tetep Rapi -->
+    <div class="w-full max-w-7xl flex flex-col items-center justify-center flex-1 min-h-0">
+        
+        <!-- Header Section (Logo Telkomsel & Tagline) -->
+        <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-5 mb-4 w-full px-2 shrink-0 text-center sm:text-left">
+            <img class="h-12 sm:h-16 object-contain mx-auto sm:mx-0 drop-shadow-md bg-white/10 p-1.5 rounded-xl backdrop-blur-sm border border-white/20" 
+                 src="logo.png" alt="Telkomsel Logo">
+            <div class="flex flex-col justify-center">
+                <h1 class="text-base sm:text-xl font-extrabold text-white leading-tight mt-1 tracking-wide">Network Operation & Productivity <span class="text-red-300">Palangkaraya</span></h1>
+                <p class="text-xs sm:text-sm text-white font-bold italic mt-1 bg-black/30 w-max px-3 py-1 rounded-full mx-auto sm:mx-0 shadow-sm border border-white/10">"Win As Solid Team!"</p>
             </div>
         </div>
 
-        <!-- 2. Dashboard NOP Palangkaraya -->
-        <div class="bg-white/40 backdrop-blur-md rounded-xl p-2 shadow-sm border border-white/60 flex flex-col h-full lg:col-span-2">
-            <h2 class="text-[12px] sm:text-sm font-bold text-slate-800 mb-1.5 flex items-center gap-1.5 shrink-0 bg-white/50 px-2 py-1 rounded-md">
-                <span>🏢</span> Dashboard NOP Palangkaraya
-            </h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-1.5 flex-1">
-                <a href="#" data-title="Tracker Activity" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1507925922837-326f12d9348e?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                        <span class="text-base shrink-0">🏃</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Tracker Activity</span>
-                    </div>
-                </a>
-                <a href="#" data-title="Availability Monitoring" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                        <span class="text-base shrink-0">📡</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Availability Monitoring</span>
-                    </div>
-                </a>
-                <a href="#" data-title="Payload & Revenue" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                        <span class="text-base shrink-0">💰</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Payload & Revenue</span>
-                    </div>
-                </a>
-                <a href="#" data-title="Profitability" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                        <span class="text-base shrink-0">💹</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Profitability</span>
-                    </div>
-                </a>
-                <a href="#" data-title="B2B Sites Tracker" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                        <span class="text-base shrink-0">🤝</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">B2B Sites Tracker</span>
-                    </div>
-                </a>
-                <a href="#" data-title="Incident Tracker" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-red-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1502759683299-cdcb24128214?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/70 group-hover:bg-red-900/70 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                        <span class="text-base shrink-0">🚨</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Incident Tracker</span>
-                    </div>
-                </a>
-            </div>
-        </div>
+        <!-- BENTO GRID CONTAINER -->
+        <div class="w-full flex-1 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 sm:gap-3 shrink-0 min-h-0">
 
-        <!-- Kolom Kanan (Stack Tracker & Maps) -->
-        <div class="flex flex-col gap-2 h-full col-span-2 sm:col-span-1 lg:col-span-1">
-            <!-- 3. Tracker -->
-            <div class="bg-white/40 backdrop-blur-md rounded-xl p-2 shadow-sm border border-white/60 flex flex-col flex-1">
-                <h2 class="text-[12px] sm:text-sm font-bold text-slate-800 mb-1.5 flex items-center gap-1.5 shrink-0 bg-white/50 px-2 py-1 rounded-md">
-                    <span>📋</span> Tracker
+            <!-- 1. Dashboard Kalimantan -->
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-2 shadow-lg border border-white/20 flex flex-col h-full">
+                <h2 class="text-[12px] sm:text-sm font-bold text-white mb-1.5 flex items-center gap-1.5 shrink-0 bg-red-600/80 px-2.5 py-1.5 rounded-md uppercase tracking-wider">
+                    <span>🏝️</span> Dashboard Kaltim
                 </h2>
                 <div class="flex flex-col gap-1.5 flex-1">
-                    <a href="#" data-title="Kertas kerja NOP Palangkaraya" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&w=400&q=80');"></div>
-                        <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
+                    <a href="#" data-title="Harmoni - Transport Kalimantan" data-cat="transport" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
                         <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
-                            <span class="text-sm shrink-0">📝</span>
-                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Kertas kerja NOP Palangkaraya</span>
+                            <span class="text-base shrink-0">🚍</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Harmoni - Transport Kalimantan</span>
                         </div>
                     </a>
-                    <a href="#" data-title="Kertas kerja ENOM" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=400&q=80');"></div>
-                        <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
+                    <a href="#" data-title="SQA - Kalimantan" data-cat="data" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
                         <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
-                            <span class="text-sm shrink-0">📄</span>
-                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Kertas kerja ENOM</span>
+                            <span class="text-base shrink-0">📈</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">SQA - Kalimantan</span>
                         </div>
                     </a>
-                    <a href="#" data-title="Improvement Transport" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=400&q=80');"></div>
-                        <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
+                    <a href="#" data-title="Power System Assurance - Kalimantan" data-cat="power" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
                         <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
-                            <span class="text-sm shrink-0">🚀</span>
-                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Improvement Transport</span>
+                            <span class="text-base shrink-0">⚡</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Power System Assurance</span>
+                        </div>
+                    </a>
+                    <a href="#" data-title="Tagihan Listrik - Kalimantan" data-cat="power" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                        <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
+                            <span class="text-base shrink-0">💡</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Tagihan Listrik</span>
                         </div>
                     </a>
                 </div>
             </div>
 
-            <!-- 5. Maps -->
-            <div class="bg-white/40 backdrop-blur-md rounded-xl p-2 shadow-sm border border-white/60 flex flex-col flex-1">
-                <h2 class="text-[12px] sm:text-sm font-bold text-slate-800 mb-1.5 flex items-center gap-1.5 shrink-0 bg-white/50 px-2 py-1 rounded-md">
-                    <span>🗺️</span> Maps
+            <!-- 2. Dashboard NOP Palangkaraya -->
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-2 shadow-lg border border-white/20 flex flex-col h-full lg:col-span-2">
+                <h2 class="text-[12px] sm:text-sm font-bold text-white mb-1.5 flex items-center gap-1.5 shrink-0 bg-red-600/80 px-2.5 py-1.5 rounded-md uppercase tracking-wider">
+                    <span>🏢</span> NOP Palangkaraya
                 </h2>
-                <div class="flex flex-col gap-1.5 flex-1">
-                    <a href="#" data-title="Maps by Regional" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=400&q=80');"></div>
-                        <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-1.5 flex-1">
+                    <a href="#" data-title="Tracker Activity" data-cat="tech" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
                         <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                            <span class="text-base shrink-0">🌍</span>
-                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Maps by Regional</span>
+                            <span class="text-base shrink-0">🏃</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Tracker Activity</span>
                         </div>
                     </a>
-                    <a href="#" data-title="Maps by NOP" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                        <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1478860409686-e7816038dd48?auto=format&fit=crop&w=400&q=80');"></div>
-                        <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
+                    <a href="#" data-title="Availability Monitoring" data-cat="network" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
                         <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                            <span class="text-base shrink-0">📍</span>
-                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Maps by NOP</span>
+                            <span class="text-base shrink-0">📡</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Availability Monitoring</span>
+                        </div>
+                    </a>
+                    <a href="#" data-title="Payload & Revenue" data-cat="finance" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                        <div class="relative z-10 flex items-center gap-2 px-3 w-full">
+                            <span class="text-base shrink-0">💰</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Payload & Revenue</span>
+                        </div>
+                    </a>
+                    <a href="#" data-title="Profitability" data-cat="finance" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                        <div class="relative z-10 flex items-center gap-2 px-3 w-full">
+                            <span class="text-base shrink-0">💹</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Profitability</span>
+                        </div>
+                    </a>
+                    <a href="#" data-title="B2B Sites Tracker" data-cat="tech" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                        <div class="relative z-10 flex items-center gap-2 px-3 w-full">
+                            <span class="text-base shrink-0">🤝</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">B2B Sites Tracker</span>
+                        </div>
+                    </a>
+                    <a href="#" data-title="Incident Tracker" data-cat="alert" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-white transition-all group border border-red-500/50">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/70 group-hover:bg-red-900/90 transition-colors"></div>
+                        <div class="relative z-10 flex items-center gap-2 px-3 w-full">
+                            <span class="text-base shrink-0">🚨</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-red-400 group-hover:text-white transition-colors leading-tight break-words whitespace-normal">Incident Tracker</span>
                         </div>
                     </a>
                 </div>
             </div>
-        </div>
 
-        <!-- 4. Tools -->
-        <div class="bg-white/40 backdrop-blur-md rounded-xl p-2 shadow-sm border border-white/60 flex flex-col h-full col-span-2 sm:col-span-3 lg:col-span-1">
-            <h2 class="text-[12px] sm:text-sm font-bold text-slate-800 mb-1.5 flex items-center gap-1.5 shrink-0 bg-white/50 px-2 py-1 rounded-md">
-                <span>🛠️</span> Tools
-            </h2>
-            <div class="flex flex-col sm:flex-row lg:flex-col gap-1.5 flex-1">
-                <a href="#" data-title="BBT Analyzer" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                        <span class="text-base shrink-0">🔍</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">BBT Analyzer</span>
+            <!-- Kolom Kanan (Stack Tracker & Maps) -->
+            <div class="flex flex-col gap-2 h-full col-span-2 sm:col-span-1 lg:col-span-1">
+                <!-- 3. Tracker -->
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-2 shadow-lg border border-white/20 flex flex-col flex-1">
+                    <h2 class="text-[12px] sm:text-sm font-bold text-white mb-1.5 flex items-center gap-1.5 shrink-0 bg-red-600/80 px-2.5 py-1.5 rounded-md uppercase tracking-wider">
+                        <span>📋</span> Tracker
+                    </h2>
+                    <div class="flex flex-col gap-1.5 flex-1">
+                        <a href="#" data-title="Kertas kerja NOP Palangkaraya" data-cat="data" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                            <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                            <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                            <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
+                                <span class="text-sm shrink-0">📝</span>
+                                <span class="text-[10px] sm:text-[11px] font-semibold text-white leading-tight break-words whitespace-normal">Kertas kerja NOP Palangkaraya</span>
+                            </div>
+                        </a>
+                        <a href="#" data-title="Kertas kerja ENOM" data-cat="data" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                            <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                            <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                            <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
+                                <span class="text-sm shrink-0">📄</span>
+                                <span class="text-[10px] sm:text-[11px] font-semibold text-white leading-tight break-words whitespace-normal">Kertas kerja ENOM</span>
+                            </div>
+                        </a>
+                        <a href="#" data-title="Improvement Transport" data-cat="transport" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                            <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                            <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                            <div class="relative z-10 flex items-center gap-2 px-2.5 w-full">
+                                <span class="text-sm shrink-0">🚀</span>
+                                <span class="text-[10px] sm:text-[11px] font-semibold text-white leading-tight break-words whitespace-normal">Improvement Transport</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="#" data-title="SPS Analyzer" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                        <span class="text-base shrink-0">📊</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">SPS Analyzer</span>
+                </div>
+
+                <!-- 5. Maps -->
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-2 shadow-lg border border-white/20 flex flex-col flex-1">
+                    <h2 class="text-[12px] sm:text-sm font-bold text-white mb-1.5 flex items-center gap-1.5 shrink-0 bg-red-600/80 px-2.5 py-1.5 rounded-md uppercase tracking-wider">
+                        <span>🗺️</span> Maps
+                    </h2>
+                    <div class="flex flex-col gap-1.5 flex-1">
+                        <a href="#" data-title="Maps by Regional" data-cat="maps" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                            <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                            <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                            <div class="relative z-10 flex items-center gap-2 px-3 w-full">
+                                <span class="text-base shrink-0">🌍</span>
+                                <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Maps by Regional</span>
+                            </div>
+                        </a>
+                        <a href="#" data-title="Maps by NOP" data-cat="maps" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                            <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                            <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                            <div class="relative z-10 flex items-center gap-2 px-3 w-full">
+                                <span class="text-base shrink-0">📍</span>
+                                <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Maps by NOP</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="#" data-title="Network Loss Analyzer" target="_blank" class="relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.02] transition-transform group border border-slate-200">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-indigo-900/60 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 px-3 w-full">
-                        <span class="text-base shrink-0">📉</span>
-                        <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Network Loss Analyzer</span>
-                    </div>
-                </a>
+                </div>
             </div>
-        </div>
 
+            <!-- 4. Tools -->
+            <div class="bg-white/10 backdrop-blur-md rounded-xl p-2 shadow-lg border border-white/20 flex flex-col h-full col-span-2 sm:col-span-3 lg:col-span-1">
+                <h2 class="text-[12px] sm:text-sm font-bold text-white mb-1.5 flex items-center gap-1.5 shrink-0 bg-red-600/80 px-2.5 py-1.5 rounded-md uppercase tracking-wider">
+                    <span>🛠️</span> Tools
+                </h2>
+                <div class="flex flex-col sm:flex-row lg:flex-col gap-1.5 flex-1">
+                    <a href="#" data-title="BBT Analyzer" data-cat="network" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                        <div class="relative z-10 flex items-center gap-2 px-3 w-full">
+                            <span class="text-base shrink-0">🔍</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">BBT Analyzer</span>
+                        </div>
+                    </a>
+                    <a href="#" data-title="SPS Analyzer" data-cat="data" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                        <div class="relative z-10 flex items-center gap-2 px-3 w-full">
+                            <span class="text-base shrink-0">📊</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">SPS Analyzer</span>
+                        </div>
+                    </a>
+                    <a href="#" data-title="Network Loss Impact Analyzer" data-cat="network" target="_blank" class="dynamic-bg relative overflow-hidden flex items-center gap-2 flex-1 rounded-lg shadow-sm hover:scale-[1.03] hover:ring-2 hover:ring-red-400 transition-all group border border-white/10">
+                        <div class="bg-img absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"></div>
+                        <div class="absolute inset-0 bg-black/60 group-hover:bg-red-900/70 transition-colors"></div>
+                        <div class="relative z-10 flex items-center gap-2 px-3 w-full">
+                            <span class="text-base shrink-0">📉</span>
+                            <span class="text-[10px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Network Loss Impact Analyzer</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
     </div>
 
-    <!-- SCRIPT FETCH DARI SUPABASE -->
+    <!-- 5. Footer -->
+    <div class="mt-3 text-center text-[10px] sm:text-xs text-white/80 shrink-0 pb-1 font-medium tracking-wide">
+        © 2026 | Created with ❤️ by Fauzi Ramdani - 97122
+    </div>
+
+    <!-- SCRIPT FETCH & RANDOMIZER -->
     <script>
+        // --- 1. RANDOM THEME COLOR PADA BACKGROUND UTAMA ---
+        // Koleksi palet warna tema Telkomsel (Merah, Hitam, Abu Gelap)
+        const palettes = [
+            ['#ED1C24', '#8A151B', '#231F20', '#ED1C24'], // Classic Red Dark
+            ['#B71216', '#ED1C24', '#404040', '#1A1A1A'], // Bright Red transition
+            ['#FF0000', '#660000', '#111111', '#595959'], // High Contrast Red
+            ['#8A151B', '#231F20', '#ED1C24', '#231F20']  // Dark Dominant
+        ];
+        const randomPalette = palettes[Math.floor(Math.random() * palettes.length)];
+        const root = document.documentElement;
+        root.style.setProperty('--bg-color-1', randomPalette[0]);
+        root.style.setProperty('--bg-color-2', randomPalette[1]);
+        root.style.setProperty('--bg-color-3', randomPalette[2]);
+        root.style.setProperty('--bg-color-4', randomPalette[3]);
+
+        // --- 2. RANDOM GAMBAR BERDASARKAN KATEGORI TOMBOL ---
+        const imageLibrary = {
+            transport: [
+                'https://images.unsplash.com/photo-1557223562-6c77ef1607bf?w=400&q=80',
+                'https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=400&q=80'
+            ],
+            data: [
+                'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80',
+                'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&q=80',
+                'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&q=80'
+            ],
+            power: [
+                'https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&q=80',
+                'https://images.unsplash.com/photo-1521618755572-156ae0cdd74d?w=400&q=80'
+            ],
+            network: [
+                'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&q=80',
+                'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&q=80',
+                'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=400&q=80'
+            ],
+            tech: [
+                'https://images.unsplash.com/photo-1507925922837-326f12d9348e?w=400&q=80',
+                'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&q=80'
+            ],
+            maps: [
+                'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&q=80',
+                'https://images.unsplash.com/photo-1478860409686-e7816038dd48?w=400&q=80',
+                'https://images.unsplash.com/photo-1569336415962-a4bd9f69cd83?w=400&q=80'
+            ],
+            finance: [
+                'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=400&q=80',
+                'https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?w=400&q=80'
+            ],
+            alert: [
+                'https://images.unsplash.com/photo-1502759683299-cdcb24128214?w=400&q=80',
+                'https://images.unsplash.com/photo-1633681926022-84c23e8cb2d6?w=400&q=80'
+            ]
+        };
+
+        // Pasang gambar secara acak pada masing-masing card sesuai kategorinya
+        document.querySelectorAll('.dynamic-bg').forEach(card => {
+            const category = card.getAttribute('data-cat');
+            if (category && imageLibrary[category]) {
+                const imgArray = imageLibrary[category];
+                const randomImg = imgArray[Math.floor(Math.random() * imgArray.length)];
+                card.querySelector('.bg-img').style.backgroundImage = `url('${randomImg}')`;
+            }
+        });
+
+        // --- 3. FETCH DATA DARI SUPABASE ---
         async function loadDynamicLinks() {
             try {
-                // Manggil API Vercel/Python lo
                 const response = await fetch('/api/links');
                 const links = await response.json();
                 
-                // Bikin map untuk nyocokin judul, biar case-insensitive dan tanpa spasi berlebih
                 const linkMap = {};
                 links.forEach(link => {
                     if(link.title && link.url) {
@@ -248,17 +335,13 @@
                     }
                 });
                 
-                // Loop semua tombol yang punya attribute data-title
-                const buttons = document.querySelectorAll('a[data-title]');
-                buttons.forEach(btn => {
+                document.querySelectorAll('a[data-title]').forEach(btn => {
                     const titleRaw = btn.getAttribute('data-title');
                     const titleKey = titleRaw.trim().toLowerCase();
                     
-                    // Kalau namanya cocok sama yang di Supabase, ganti href-nya
                     if (linkMap[titleKey]) {
                         btn.href = linkMap[titleKey];
                     } else {
-                        // Kalau belum ada di DB, bisa dikasih '#belum-ada-link' biar kelihatan
                         btn.href = "#";
                     }
                 });
@@ -267,7 +350,6 @@
             }
         }
         
-        // Jalanin fungsi otomatis pas halaman dibuka
         loadDynamicLinks();
     </script>
 </body>

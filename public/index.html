@@ -35,6 +35,7 @@
 
     <div class="w-full max-w-7xl mx-auto p-3 sm:p-5 flex flex-col flex-grow">
         
+        <!-- HEADER SECTION -->
         <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-5 mb-6 w-full text-center sm:text-left relative shrink-0">
             <img class="h-12 sm:h-14 object-contain mx-auto sm:mx-0 drop-shadow-sm" 
                  src="logo.png" 
@@ -45,6 +46,7 @@
                 <div class="flex flex-col lg:flex-row items-center gap-2 mt-2">
                     <p class="text-xs sm:text-sm text-red-600 font-bold italic bg-red-50/80 w-max px-3 py-1 rounded-full shadow-sm border border-red-100 shrink-0">"Win As Solid Team!"</p>
                     
+                    <!-- QUOTES OF THE DAY BOX -->
                     <div class="bg-white/50 border border-white/60 backdrop-blur-md px-3 py-1.5 rounded-full shadow-sm max-w-sm sm:max-w-lg w-max flex items-center">
                         <span class="text-xs mr-2">💬</span>
                         <p id="quote-text" class="text-[10px] sm:text-xs text-slate-700 font-semibold italic transition-opacity duration-500 opacity-100"></p>
@@ -53,55 +55,80 @@
             </div>
         </div>
 
+        <!-- ==========================================
+             DIVIDER 1: DASHBOARD KALIMANTAN
+        =========================================== -->
         <div class="bg-white/60 backdrop-blur-md rounded-3xl p-4 sm:p-5 shadow-sm border border-white w-full mb-6 flex flex-col">
             <h2 class="text-[13px] sm:text-base font-bold text-white mb-4 flex items-center gap-2 w-max bg-gradient-to-r from-red-600 to-rose-800 px-4 py-2 rounded-xl shadow-md tracking-wide">
                 <span>💻</span> Dashboard Kalimantan
             </h2>
             
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
-                <a href="https://datastudio.google.com/u/0/reporting/e31f4637-31f3-480d-84dc-d5d0ffacd8ca?s=qJfRUQ6716w" data-title="Harmoni - Transport Kalimantan" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 w-full">
-                        <span class="text-base shrink-0">🚍</span>
-                        <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Harmoni - Transport Kalimantan</span>
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 sm:gap-6 flex-1">
+                
+                <!-- KOLOM KIRI (Main Dashboard Kalimantan) -->
+                <div class="lg:col-span-3 flex flex-col gap-3">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-800 border-b border-slate-300/50 pb-1.5 flex items-center gap-1.5">
+                        <span class="text-red-600">📌</span> Main Dashboard
+                    </h3>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                        <a href="https://datastudio.google.com/u/0/reporting/e31f4637-31f3-480d-84dc-d5d0ffacd8ca?s=qJfRUQ6716w" data-title="Harmoni - Transport Kalimantan" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
+                            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=400&q=80');"></div>
+                            <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
+                            <div class="relative z-10 flex items-center gap-2 w-full">
+                                <span class="text-base shrink-0">🚍</span>
+                                <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Harmoni - Transport</span>
+                            </div>
+                        </a>
+                        <a href="#" data-title="SQA - Kalimantan" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
+                            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80');"></div>
+                            <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
+                            <div class="relative z-10 flex items-center gap-2 w-full">
+                                <span class="text-base shrink-0">📈</span>
+                                <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">SQA - Kalimantan</span>
+                            </div>
+                        </a>
+                        <a href="#" data-title="Power System Assurance - Kalimantan" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
+                            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&q=80');"></div>
+                            <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
+                            <div class="relative z-10 flex items-center gap-2 w-full">
+                                <span class="text-base shrink-0">⚡</span>
+                                <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Power System Assurance</span>
+                            </div>
+                        </a>
+                        <a href="#" data-title="Tagihan Listrik - Kalimantan" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
+                            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1521618755572-156ae0cdd74d?w=400&q=80');"></div>
+                            <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
+                            <div class="relative z-10 flex items-center gap-2 w-full">
+                                <span class="text-base shrink-0">💡</span>
+                                <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Tagihan Listrik</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="#" data-title="SQA - Kalimantan" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 w-full">
-                        <span class="text-base shrink-0">📈</span>
-                        <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">SQA - Kalimantan</span>
+                </div>
+
+                <!-- KOLOM KANAN (Maps Kalimantan) -->
+                <div class="flex flex-col gap-3">
+                    <h3 class="text-xs sm:text-sm font-bold text-slate-800 border-b border-slate-300/50 pb-1.5 flex items-center gap-1.5">
+                        <span class="text-red-600">🗺️</span> Maps
+                    </h3>
+                    <div class="flex flex-col gap-3 h-full">
+                        <a href="#" data-title="Maps by Regional" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 h-full min-h-[70px] p-3">
+                            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&q=80');"></div>
+                            <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
+                            <div class="relative z-10 flex items-center gap-2 w-full">
+                                <span class="text-base shrink-0">🌍</span>
+                                <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Maps by Regional</span>
+                            </div>
+                        </a>
                     </div>
-                </a>
-                <a href="#" data-title="Power System Assurance - Kalimantan" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 w-full">
-                        <span class="text-base shrink-0">⚡</span>
-                        <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Power System Assurance</span>
-                    </div>
-                </a>
-                <a href="#" data-title="Tagihan Listrik - Kalimantan" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1521618755572-156ae0cdd74d?w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 w-full">
-                        <span class="text-base shrink-0">💡</span>
-                        <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Tagihan Listrik</span>
-                    </div>
-                </a>
-                <a href="#" data-title="Maps by Regional" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
-                    <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&q=80');"></div>
-                    <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
-                    <div class="relative z-10 flex items-center gap-2 w-full">
-                        <span class="text-base shrink-0">🌍</span>
-                        <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Maps by Regional</span>
-                    </div>
-                </a>
+                </div>
+
             </div>
         </div>
 
+        <!-- ==========================================
+             DIVIDER 2: DASHBOARD NOP PALANGKARAYA
+        =========================================== -->
         <div class="bg-white/60 backdrop-blur-md rounded-3xl p-4 sm:p-5 shadow-sm border border-white w-full flex flex-col flex-1">
             <h2 class="text-[13px] sm:text-base font-bold text-white mb-4 flex items-center gap-2 w-max bg-gradient-to-r from-red-600 to-rose-800 px-4 py-2 rounded-xl shadow-md tracking-wide">
                 <span>🏢</span> Dashboard NOP Palangkaraya
@@ -109,6 +136,7 @@
             
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 sm:gap-6 flex-1">
                 
+                <!-- KOLOM KIRI (Main Dashboard) -->
                 <div class="lg:col-span-2 flex flex-col gap-3">
                     <h3 class="text-xs sm:text-sm font-bold text-slate-800 border-b border-slate-300/50 pb-1.5 flex items-center gap-1.5">
                         <span class="text-red-600">📌</span> Main Dashboard
@@ -165,6 +193,7 @@
                     </div>
                 </div>
 
+                <!-- KOLOM TENGAH (Tracker) -->
                 <div class="flex flex-col gap-3">
                     <h3 class="text-xs sm:text-sm font-bold text-slate-800 border-b border-slate-300/50 pb-1.5 flex items-center gap-1.5">
                         <span class="text-red-600">📋</span> Tracker
@@ -197,6 +226,7 @@
                     </div>
                 </div>
 
+                <!-- KOLOM KANAN (Tools) -->
                 <div class="flex flex-col gap-3">
                     <h3 class="text-xs sm:text-sm font-bold text-slate-800 border-b border-slate-300/50 pb-1.5 flex items-center gap-1.5">
                         <span class="text-red-600">🛠️</span> Tools
@@ -226,8 +256,9 @@
                                 <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Network Loss Impact Analyzer</span>
                             </div>
                         </a>
-                        <a href="#" data-title="ume broadcast tool" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
-                            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1520694478166-daaaaaec9522?w=400&q=80');"></div>
+                        <!-- UME Broadcast Tool -->
+                        <a href="https://ume-broadcast.vercel.app/" data-title="ume broadcast tool" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 min-h-[70px] p-3">
+                            <div class="absolute inset-0 bg-cover bg-center group-hover:scale-110 transition-transform duration-500" style="background-image: url('https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=400&q=80');"></div>
                             <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
                             <div class="relative z-10 flex items-center gap-2 w-full">
                                 <span class="text-base shrink-0">📢</span>
@@ -239,6 +270,7 @@
 
             </div>
 
+            <!-- Footer Dimasukkan ke dalam Divider NOP Palangkaraya -->
             <div class="mt-6 pt-4 text-center text-[10px] sm:text-xs text-slate-500 font-medium tracking-wide border-t border-white/50">
                 © 2026 | Created with ❤️ by Fauzi Ramdani - 97122
             </div>
@@ -247,6 +279,7 @@
 
     </div>
 
+    <!-- SCRIPT FETCH & QUOTES ANIMATION -->
     <script>
         const quotes = [
             "Main link putus? Tenang, ada link backup. Kalo kewarasan putus? Wah bahaya, BPJS nggak nge-cover reboot mental. Stay sane!🚀",

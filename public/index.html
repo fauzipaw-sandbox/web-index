@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NOP Palangkaraya Central Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script> <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet">
     
     <style>
         body { 
@@ -273,7 +273,7 @@
                         <div class="border-2 border-dashed border-slate-300 rounded-xl p-4 flex flex-col items-center gap-2.5 hover:border-red-400 hover:bg-white/50 transition cursor-pointer text-center">
                             <span class="text-4xl">📄</span>
                             <p class="text-[11px] text-slate-600 font-medium leading-snug">Pilih file CSV untuk data Availability Inap<br>
-                                <span class="text-[10px] text-slate-400">(Maks. 5MB)</span>
+                                <span class="text-[10px] text-slate-400">(Upload paralel otomatis per 10k data)</span>
                             </p>
                             <input type="file" accept=".csv" class="block w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[11px] file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 cursor-pointer"/>
                         </div>
@@ -297,7 +297,7 @@
                         <div class="border-2 border-dashed border-slate-300 rounded-xl p-4 flex flex-col items-center gap-2.5 hover:border-red-400 hover:bg-white/50 transition cursor-pointer text-center">
                             <span class="text-4xl">📄</span>
                             <p class="text-[11px] text-slate-600 font-medium leading-snug">Pilih file CSV untuk data Availability UME<br>
-                                <span class="text-[10px] text-slate-400">(Maks. 5MB)</span>
+                                <span class="text-[10px] text-slate-400">(Upload paralel otomatis per 10k data)</span>
                             </p>
                             <input type="file" accept=".csv" class="block w-full text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-full file:border-0 file:text-[11px] file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 cursor-pointer"/>
                         </div>
@@ -322,14 +322,12 @@
 
     <script>
         // --- KONFIGURASI SUPABASE ---
-        // GANTI DENGAN KREDENSIAL SUPABASE LO SENDIRI (AMBIL DARI DASHBOARD SUPABASE)
-        const SUPABASE_URL = 'https://your-project-url.supabase.co'; 
-        const SUPABASE_ANON_KEY = 'your-anon-key'; // Ambil Anon Key
+        const SUPABASE_URL = 'https://sfyfijndolnwqklqnpmj.supabase.co'; 
+        const SUPABASE_ANON_KEY = 'sb_publishable_digs5GILs-TEe4lEpPj4qQ_VRrQ7FCm'; 
         
-        // Inisialisasi Supabase client
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-        // --- QUOTES OF THE DAY LOGIC (Update Sesuai Request Lo) ---
+        // --- QUOTES LOGIC ---
         const quotes = [
             "Main link putus? Tenang, ada link backup. Kalo kewarasan putus? Wah bahaya, BPJS nggak nge-cover reboot mental. Stay sane!🚀",
             "Target Payload emang berat, tapi beban pikiran jangan dibiarin overload. Tarik napas, clear cache otak dulu lima menit dan jangan lupa Sholat.😇",
@@ -341,108 +339,124 @@
             "Satu core FO putus emang bikin panik sekampung, tapi tim yang solid bisa balikin keadaan secepat kilat. Win As Solid Team!"
         ];
         
-        let quoteIndex = 0;
+        let quoteIndex = Math.floor(Math.random() * quotes.length);
         const quoteEl = document.getElementById('quote-text');
-        
-        // Randomize urutan pertama kali load
-        quoteIndex = Math.floor(Math.random() * quotes.length);
         quoteEl.innerText = quotes[quoteIndex];
 
-        function changeQuote() {
+        setInterval(() => {
             quoteEl.classList.remove('opacity-100');
             quoteEl.classList.add('opacity-0');
-            
             setTimeout(() => {
                 quoteIndex = (quoteIndex + 1) % quotes.length;
                 quoteEl.innerText = quotes[quoteIndex];
-                
                 quoteEl.classList.remove('opacity-0');
                 quoteEl.classList.add('opacity-100');
             }, 500); 
-        }
+        }, 60000);
 
-        // Ganti setiap 1 Menit
-        setInterval(changeQuote, 60000);
-
-
-        // --- FETCH DATA DARI SUPABASE UNTUK LINK BENTO ---
+        // --- FETCH LINK BENTO ---
         async function loadDynamicLinks() {
             try {
                 const response = await fetch('/api/links');
                 const links = await response.json();
-                
                 const linkMap = {};
                 links.forEach(link => {
-                    if(link.title && link.url) {
-                        linkMap[link.title.trim().toLowerCase()] = link.url;
-                    }
+                    if(link.title && link.url) linkMap[link.title.trim().toLowerCase()] = link.url;
                 });
-                
                 document.querySelectorAll('a[data-title]').forEach(btn => {
-                    const titleRaw = btn.getAttribute('data-title');
-                    const titleKey = titleRaw.trim().toLowerCase();
-                    
-                    // Timpa URL dari Supabase, kecuali untuk yang hardcoded
-                    if (linkMap[titleKey]) {
-                        btn.href = linkMap[titleKey];
-                    }
+                    const titleKey = btn.getAttribute('data-title').trim().toLowerCase();
+                    if (linkMap[titleKey]) btn.href = linkMap[titleKey];
                 });
             } catch (error) {
                 console.error("Gagal narik data URL dari Supabase:", error);
             }
         }
-        
         loadDynamicLinks();
 
-        // --- LOGIKA UPLOAD DATA KE SUPABASE (MIGRASI DARI SAGE) ---
-
-        // Fungsi umum untuk upload data CSV ke tabel Supabase
-        async function uploadCsvToTable(fileInputId, statusId, btnId, tableName) {
+        // ==========================================================
+        // LOGIKA UTAMA: PARTIAL CHUNK & PARALLEL UPLOAD TO SUPABASE
+        // ==========================================================
+        function initChunkedUpload(fileInputId, statusId, btnId, tableName) {
             const fileInput = document.querySelector(`#${fileInputId} input[type="file"]`);
             const statusEl = document.getElementById(statusId);
             const btnUpload = document.querySelector(`#${btnId}`);
 
-            // Event tombol upload diklik
-            btnUpload.addEventListener('click', async () => {
+            btnUpload.addEventListener('click', () => {
                 const file = fileInput.files[0];
                 if (!file) {
                     alert('Pilih file CSV dulu ngab!');
                     return;
                 }
 
-                // Matikan tombol saat upload
                 btnUpload.disabled = true;
-                statusEl.innerText = 'Uploading data... ⏳';
-                statusEl.classList.remove('text-slate-500', 'text-emerald-600', 'text-red-600');
-                statusEl.classList.add('text-amber-600', 'font-medium');
+                statusEl.innerText = 'Membaca dan memproses data file... ⏳';
+                statusEl.className = 'text-[10px] text-amber-600 font-medium italic';
 
-                // Logika upload data ke tabel Supabase (paling simpel: simpan file nama sebagai referensi)
-                // Lo bisa modifikasi ini buat parse CSV pakai PapaParse lalu insert per baris data
-                const { data, error } = await supabaseClient.from(tableName).insert([{ file_name: file.name }]);
+                // Gunakan PapaParse untuk nge-stream/parse CSV data berat secara efisien
+                Papa.parse(file, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: async function(results) {
+                        const allData = results.data;
+                        const totalRecords = allData.length;
 
-                if (error) {
-                    console.error(`Gagal upload data ke tabel ${tableName}:`, error);
-                    statusEl.innerText = 'Upload Gagal. Cek console.';
-                    statusEl.classList.replace('text-amber-600', 'text-red-600');
-                    alert(`Gagal upload data ke ${tableName}!`);
-                } else {
-                    console.log(`Sukses upload data ke tabel ${tableName}:`, data);
-                    statusEl.innerText = `Sukses upload file: ${file.name} ✅`;
-                    statusEl.classList.replace('text-amber-600', 'text-emerald-600');
-                    alert(`Sukses upload data ke ${tableName}!`);
-                    fileInput.value = ''; // Reset input file
-                }
+                        if (totalRecords === 0) {
+                            statusEl.innerText = 'File kosong, Zi!';
+                            statusEl.className = 'text-[10px] text-red-600 italic';
+                            btnUpload.disabled = false;
+                            return;
+                        }
 
-                // Nyalakan kembali tombol
-                btnUpload.disabled = false;
+                        statusEl.innerText = `Membagi ${totalRecords.toLocaleString()} baris ke per 10k... 📦`;
+                        
+                        const chunkSize = 10000;
+                        const promises = [];
+
+                        // Slicing data per 10.000 row dan buat push promise-nya barengan
+                        for (let i = 0; i < totalRecords; i += chunkSize) {
+                            const chunk = allData.slice(i, i + chunkSize);
+                            
+                            // Inject bulk insert promise secara paralel
+                            const uploadPromise = supabaseClient.from(tableName).insert(chunk);
+                            promises.push(uploadPromise);
+                        }
+
+                        statusEl.innerText = `Mengupload ${promises.length} chunk secara paralel ke Supabase... 🚀`;
+
+                        try {
+                            // Eksekusi semua request insert 10k secara bersamaan (Paralel)
+                            const uploadResults = await Promise.all(promises);
+
+                            // Cek jika ada chunk data yang error di Supabase
+                            const errorChunk = uploadResults.find(res => res.error);
+                            if (errorChunk) throw errorChunk.error;
+
+                            statusEl.innerText = `Sukses! ${totalRecords.toLocaleString()} data masuk ke ${tableName} 🎉`;
+                            statusEl.className = 'text-[10px] text-emerald-600 font-bold italic';
+                            alert(`Mantap, Zi! ${totalRecords.toLocaleString()} data berhasil diproses paralel ke tabel ${tableName}.`);
+                            fileInput.value = ''; // Reset slot input
+                        } catch (err) {
+                            console.error("Gagal melakukan paralel upload:", err);
+                            statusEl.innerText = 'Upload gagal, periksa skema tabel/koneksi.';
+                            statusEl.className = 'text-[10px] text-red-600 font-bold italic';
+                            alert(`Gagal upload data ke ${tableName}. Cek log console DB lo!`);
+                        } finally {
+                            btnUpload.disabled = false;
+                        }
+                    },
+                    error: function(err) {
+                        console.error("Gagal parse file CSV:", err);
+                        statusEl.innerText = 'File CSV gagal dibaca.';
+                        statusEl.className = 'text-[10px] text-red-600 italic';
+                        btnUpload.disabled = false;
+                    }
+                });
             });
         }
 
-        // Jalankan upload untuk kedua tabel
-        // Pastikan tabel inap_data dan ume_data sudah dibuat di Supabase
-        uploadCsvToTable('section-upload-inap', 'status-inap', 'section-upload-inap button', 'inap_data');
-        uploadCsvToTable('section-upload-ume', 'status-ume', 'section-upload-ume button', 'ume_data');
-
+        // Daftarkan fungsi ke masing-masing container id
+        initChunkedUpload('section-upload-inap', 'status-inap', 'section-upload-inap button', 'inap_data');
+        initChunkedUpload('section-upload-ume', 'status-ume', 'section-upload-ume button', 'ume_data');
     </script>
 </body>
 </html>

@@ -119,6 +119,7 @@
                         </a>
                     </div>
                 </div>
+
             </div>
         </div>
 
@@ -381,7 +382,6 @@
             });
         }
 
-
         // ==========================================================
         // LOGIKA AUTOMATIC UPLOAD DENGAN PROGRESS REAL-TIME UI
         // ==========================================================
@@ -429,29 +429,25 @@
                             continue;
                         }
 
-                        const chunkSize = 10000;
-                        const promises = [];
+                        // Chunk size diubah jadi 1000
+                        const chunkSize = 1000;
                         let uploadedRecords = 0;
 
                         // Set UI awal upload
                         renderUI(`Mengirim ke DB: 0 dari ${totalRecords} baris...`, file.name);
 
-                        // Potong per 10.000
+                        // Potong per 1000 dan kirim antri (sekuensial)
                         for (let j = 0; j < totalRecords; j += chunkSize) {
                             const chunk = allData.slice(j, j + chunkSize);
                             
-                            // Bikin promise dengan side-effect update progress
-                            const p = supabaseClient.from(tableName).insert(chunk).then((res) => {
-                                if(res.error) throw res.error;
-                                uploadedRecords += chunk.length;
-                                // Update text real-time di UI
-                                renderUI(`Mengirim ke DB: ${uploadedRecords} dari ${totalRecords} baris...`, file.name);
-                            });
-                            promises.push(p);
+                            // Await proses per 1000 data biar server gak error
+                            const { error } = await supabaseClient.from(tableName).insert(chunk);
+                            if (error) throw error;
+                            
+                            uploadedRecords += chunk.length;
+                            // Update text real-time di UI persis kayak contoh lo
+                            renderUI(`Mengirim ke DB: ${uploadedRecords} dari ${totalRecords} baris...`, file.name);
                         }
-
-                        // Eksekusi paralel semua chunk
-                        await Promise.all(promises);
                         
                     } catch (err) {
                         console.error(`Gagal upload isi file ${file.name}:`, err);

@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,700&display=swap" rel="stylesheet">
     
@@ -242,7 +243,7 @@
                             <div class="absolute inset-0 bg-slate-900/60 group-hover:bg-red-900/70 transition-colors"></div>
                             <div class="relative z-10 flex items-center gap-2 w-full">
                                 <span class="text-base shrink-0">📉</span>
-                                <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Network Loss Impact Analyzer</span>
+                                <span class="text-[11px] sm:text-xs font-semibold text-white leading-tight break-words whitespace-normal">Net Loss Analyzer</span>
                             </div>
                         </a>
                         <a href="https://ume-broadcast.vercel.app/" data-title="ume broadcast tool" target="_blank" class="fallback-bg relative overflow-hidden flex items-center gap-2 rounded-xl shadow-sm hover:scale-[1.02] hover:ring-2 hover:ring-red-400 transition-all group border border-slate-200 h-full min-h-[70px] p-3">
@@ -276,9 +277,9 @@
                         <div id="dropzone-inap" class="border-2 border-dashed border-slate-300 rounded-xl p-6 flex flex-col items-center gap-2.5 hover:border-red-400 hover:bg-white/50 transition relative text-center min-h-[140px] justify-center">
                             <span class="text-4xl pointer-events-none">📄</span>
                             <p class="text-[11px] text-slate-600 font-medium leading-snug pointer-events-none">
-                                Drag & drop file CSV di sini atau klik untuk upload multiple file
+                                Drag & drop file CSV/Excel di sini atau klik untuk upload multiple file
                             </p>
-                            <input type="file" id="input-inap" accept=".csv" multiple class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"/>
+                            <input type="file" id="input-inap" accept=".csv, .xlsx, .xls" multiple class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"/>
                         </div>
                     </div>
                     
@@ -297,9 +298,9 @@
                         <div id="dropzone-ume" class="border-2 border-dashed border-slate-300 rounded-xl p-6 flex flex-col items-center gap-2.5 hover:border-red-400 hover:bg-white/50 transition relative text-center min-h-[140px] justify-center">
                             <span class="text-4xl pointer-events-none">📄</span>
                             <p class="text-[11px] text-slate-600 font-medium leading-snug pointer-events-none">
-                                Drag & drop file CSV di sini atau klik untuk upload multiple file
+                                Drag & drop file CSV/Excel di sini atau klik untuk upload multiple file
                             </p>
-                            <input type="file" id="input-ume" accept=".csv" multiple class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"/>
+                            <input type="file" id="input-ume" accept=".csv, .xlsx, .xls" multiple class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"/>
                         </div>
                     </div>
                     
@@ -319,8 +320,9 @@
 
     <script>
         // --- KONFIGURASI SUPABASE ---
-        const SUPABASE_URL = 'https://sfyfijndolnwqklqnpmj.supabase.co'; 
-        const SUPABASE_ANON_KEY = 'sb_publishable_digs5GILs-TEe4lEpPj4qQ_VRrQ7FCm'; 
+        // GANTI INI PAKAI KREDENSIAL LO
+        const SUPABASE_URL = 'https://your-project-url.supabase.co'; 
+        const SUPABASE_ANON_KEY = 'your-anon-key'; 
         
         const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -371,14 +373,50 @@
         loadDynamicLinks();
 
         // ==========================================================
-        // LOGIKA AUTOMATIC & PARALLEL MULTIPLE UPLOAD DRAG N DROP
+        // HELPER FUNCTIONS UNTUK PARSING FILE (CSV & EXCEL)
+        // ==========================================================
+        function parseCsv(file) {
+            return new Promise((resolve, reject) => {
+                Papa.parse(file, {
+                    header: true,
+                    skipEmptyLines: true,
+                    complete: (results) => resolve(results.data),
+                    error: (error) => reject(error)
+                });
+            });
+        }
+
+        function parseExcel(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    try {
+                        const data = new Uint8Array(e.target.result);
+                        const workbook = XLSX.read(data, { type: 'array' });
+                        // Ambil sheet pertama aja
+                        const firstSheetName = workbook.SheetNames[0];
+                        const worksheet = workbook.Sheets[firstSheetName];
+                        // Convert ke array of objects (Header otomatis di baris 1)
+                        const json = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
+                        resolve(json);
+                    } catch (error) {
+                        reject(error);
+                    }
+                };
+                reader.onerror = (error) => reject(error);
+                reader.readAsArrayBuffer(file);
+            });
+        }
+
+
+        // ==========================================================
+        // LOGIKA AUTOMATIC & PARALLEL MULTIPLE UPLOAD (EXCEL/CSV CHUNKING)
         // ==========================================================
         function setupAutoUpload(dropzoneId, inputId, statusId, tableName) {
             const dropzone = document.getElementById(dropzoneId);
             const fileInput = document.getElementById(inputId);
             const statusEl = document.getElementById(statusId);
 
-            // Efek visual pas file diseret di atas dropzone
             fileInput.addEventListener('dragover', () => {
                 dropzone.classList.add('border-red-500', 'bg-red-50/50');
             });
@@ -391,7 +429,6 @@
                 dropzone.classList.remove('border-red-500', 'bg-red-50/50');
             });
 
-            // Trigger upload otomatis pas file dipilih / di-drop
             fileInput.addEventListener('change', async () => {
                 const files = fileInput.files;
                 if (files.length === 0) return;
@@ -404,64 +441,64 @@
                 // Looping untuk eksekusi file satu per satu
                 for (let i = 0; i < totalFiles; i++) {
                     const file = files[i];
+                    
+                    const isCsv = file.name.endsWith('.csv');
+                    const isExcel = file.name.endsWith('.xlsx') || file.name.endsWith('.xls');
 
-                    // Validasi ekstensi file
-                    if (!file.name.endsWith('.csv')) {
-                        statusEl.innerText = `File "${file.name}" ditolak karena bukan CSV! ❌`;
+                    if (!isCsv && !isExcel) {
+                        statusEl.innerText = `File "${file.name}" ditolak formatnya (Hanya CSV/XLSX)! ❌`;
                         statusEl.className = 'text-[10px] text-red-600 font-bold italic';
                         continue;
                     }
 
                     statusEl.innerText = `Memproses file [${i + 1}/${totalFiles}]: ${file.name}... ⏳`;
 
-                    // Handle pembacaan file dan splitting chunk per file secara asynchronous
-                    await new Promise((resolve) => {
-                        Papa.parse(file, {
-                            header: true,
-                            skipEmptyLines: true,
-                            complete: async function(results) {
-                                const allData = results.data;
-                                const totalRecords = allData.length;
+                    try {
+                        let allData = [];
+                        
+                        // Parse sesuai format file
+                        if (isCsv) {
+                            allData = await parseCsv(file);
+                        } else {
+                            allData = await parseExcel(file);
+                        }
 
-                                if (totalRecords === 0) {
-                                    console.warn(`File ${file.name} kosong.`);
-                                    resolve();
-                                    return;
-                                }
+                        const totalRecords = allData.length;
+                        if (totalRecords === 0) {
+                            console.warn(`File ${file.name} kosong.`);
+                            continue;
+                        }
 
-                                const chunkSize = 10000;
-                                const promises = [];
+                        const chunkSize = 10000;
+                        const promises = [];
 
-                                // Split data per 10k baris ke dalam array promise
-                                for (let j = 0; j < totalRecords; j += chunkSize) {
-                                    const chunk = allData.slice(j, j + chunkSize);
-                                    promises.push(supabaseClient.from(tableName).insert(chunk));
-                                }
+                        // Split data per 10k baris
+                        for (let j = 0; j < totalRecords; j += chunkSize) {
+                            const chunk = allData.slice(j, j + chunkSize);
+                            promises.push(supabaseClient.from(tableName).insert(chunk));
+                        }
 
-                                try {
-                                    // Eksekusi semua request insert paralel untuk file saat ini
-                                    const uploadResults = await Promise.all(promises);
-                                    const errorChunk = uploadResults.find(res => res.error);
-                                    if (errorChunk) throw errorChunk.error;
-                                    
-                                    successfulUploads++;
-                                } catch (err) {
-                                    console.error(`Gagal upload isi file ${file.name}:`, err);
-                                }
-                                resolve();
-                            }
-                        });
-                    });
+                        statusEl.innerText = `Mengupload ${promises.length} chunk dari file ${file.name}... 🚀`;
+
+                        // Eksekusi request insert paralel
+                        const uploadResults = await Promise.all(promises);
+                        const errorChunk = uploadResults.find(res => res.error);
+                        
+                        if (errorChunk) throw errorChunk.error;
+                        
+                        successfulUploads++;
+                    } catch (err) {
+                        console.error(`Gagal upload isi file ${file.name}:`, err);
+                        statusEl.innerText = `Gagal upload file ${file.name}!`;
+                        statusEl.className = 'text-[10px] text-red-600 font-bold italic';
+                    }
                 }
 
                 // Final status setelah loop file beres
                 if (successfulUploads > 0) {
-                    statusEl.innerText = `Sukses! Berhasil upload otomatis ${successfulUploads} file ke ${tableName} 🎉`;
+                    statusEl.innerText = `Sukses! Berhasil upload ${successfulUploads} file ke ${tableName} 🎉`;
                     statusEl.className = 'text-[10px] text-emerald-600 font-bold italic';
                     alert(`Mantap Zi, ${successfulUploads} file berhasil masuk database.`);
-                } else {
-                    statusEl.innerText = 'Gagal memproses file. Periksa isi file lo.';
-                    statusEl.className = 'text-[10px] text-red-600 font-bold italic';
                 }
 
                 fileInput.value = ''; // Reset slot input biar bisa dipake ulang

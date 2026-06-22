@@ -38,6 +38,7 @@
 
     <div class="w-full max-w-7xl mx-auto p-3 sm:p-5 flex flex-col flex-grow">
         
+        <!-- HEADER -->
         <div class="flex flex-col sm:flex-row items-center sm:items-start gap-3 sm:gap-5 mb-6 w-full text-center sm:text-left relative shrink-0">
             <img class="h-12 sm:h-14 object-contain mx-auto sm:mx-0 drop-shadow-sm" 
                  src="logo.png" 
@@ -56,13 +57,13 @@
             </div>
         </div>
 
+        <!-- DIVIDER 1: DASHBOARD KALIMANTAN -->
         <div class="bg-white/60 backdrop-blur-md rounded-3xl p-4 sm:p-5 shadow-sm border border-white w-full mb-6 flex flex-col shrink-0">
             <h2 class="text-[13px] sm:text-base font-bold text-white mb-4 flex items-center gap-2 w-max bg-gradient-to-r from-red-600 to-rose-800 px-4 py-2 rounded-xl shadow-md tracking-wide">
                 <span>💻</span> Dashboard Kalimantan
             </h2>
             
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-5 sm:gap-6 flex-1">
-                
                 <div class="lg:col-span-3 flex flex-col gap-3">
                     <h3 class="text-xs sm:text-sm font-bold text-slate-800 border-b border-slate-300/50 pb-1.5 flex items-center gap-1.5">
                         <span class="text-red-600">📌</span> Main Dashboard
@@ -118,10 +119,10 @@
                         </a>
                     </div>
                 </div>
-
             </div>
         </div>
 
+        <!-- DIVIDER 2: DASHBOARD NOP PALANGKARAYA -->
         <div class="bg-white/60 backdrop-blur-md rounded-3xl p-4 sm:p-5 shadow-sm border border-white w-full mb-6 flex flex-col flex-1 shrink-0">
             <h2 class="text-[13px] sm:text-base font-bold text-white mb-4 flex items-center gap-2 w-max bg-gradient-to-r from-red-600 to-rose-800 px-4 py-2 rounded-xl shadow-md tracking-wide">
                 <span>🏢</span> Dashboard NOP Palangkaraya
@@ -260,52 +261,25 @@
             </div>
         </div>
 
-        <div id="section-upload" class="bg-white/60 backdrop-blur-md rounded-3xl p-4 sm:p-5 shadow-sm border border-white w-full flex flex-col shrink-0 mt-6">
-            <h2 class="text-[13px] sm:text-base font-bold text-white mb-5 flex items-center gap-2 w-max bg-gradient-to-r from-red-600 to-rose-800 px-4 py-2 rounded-xl shadow-md tracking-wide">
-                <span>📤</span> Upload Data Operasional
-            </h2>
-            
+        <!-- DIVIDER 3: UPLOAD DATA OPERASIONAL (NEW HORIZONTAL UI) -->
+        <div id="section-upload" class="w-full flex flex-col shrink-0 mt-2 mb-6">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-grow">
                 
-                <div class="bg-slate-50/70 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-inner">
-                    <div class="flex flex-col gap-3">
-                        <div class="flex items-center gap-2.5 font-semibold text-sm sm:text-base text-slate-800 border-b border-slate-200 pb-2">
-                            <span class="text-red-600 text-lg">📋</span>
-                            <h4>Upload Data Avail Inap</h4>
-                        </div>
-                        
-                        <div id="dropzone-inap" class="border-2 border-dashed border-slate-300 rounded-xl p-6 flex flex-col items-center gap-2.5 hover:border-red-400 hover:bg-white/50 transition relative text-center min-h-[140px] justify-center">
-                            <span class="text-4xl pointer-events-none">📄</span>
-                            <p class="text-[11px] text-slate-600 font-medium leading-snug pointer-events-none">
-                                Drag & drop file CSV/Excel di sini atau klik untuk upload multiple file
-                            </p>
-                            <input type="file" id="input-inap" accept=".csv, .xlsx, .xls" multiple class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"/>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center justify-between gap-3 border-t border-slate-200 pt-3">
-                        <p id="status-inap" class="text-[10px] text-slate-500 font-medium italic">Ready for drop file.</p>
+                <!-- BOX UPLOAD INAP (Tema Biru) -->
+                <div id="dropzone-inap" class="relative border-2 border-dashed border-blue-400 bg-blue-50/60 hover:bg-blue-100/70 transition-colors rounded-xl flex flex-col items-center justify-center min-h-[100px] text-center overflow-hidden shadow-sm backdrop-blur-sm">
+                    <input type="file" id="input-inap" accept=".csv, .xlsx, .xls" multiple class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"/>
+                    <div id="status-inap" class="z-0 p-4 pointer-events-none flex flex-col items-center justify-center w-full">
+                        <h3 class="text-base sm:text-lg font-bold text-blue-600 mb-1">Upload Data INAP</h3>
+                        <p class="text-xs sm:text-sm text-blue-500 font-medium">Drag & Drop file .XLSX atau .CSV di sini</p>
                     </div>
                 </div>
 
-                <div class="bg-slate-50/70 border border-slate-200 rounded-2xl p-4 flex flex-col justify-between shadow-inner">
-                    <div class="flex flex-col gap-3">
-                        <div class="flex items-center gap-2.5 font-semibold text-sm sm:text-base text-slate-800 border-b border-slate-200 pb-2">
-                            <span class="text-red-600 text-lg">📋</span>
-                            <h4>Upload Data Avail UME</h4>
-                        </div>
-                        
-                        <div id="dropzone-ume" class="border-2 border-dashed border-slate-300 rounded-xl p-6 flex flex-col items-center gap-2.5 hover:border-red-400 hover:bg-white/50 transition relative text-center min-h-[140px] justify-center">
-                            <span class="text-4xl pointer-events-none">📄</span>
-                            <p class="text-[11px] text-slate-600 font-medium leading-snug pointer-events-none">
-                                Drag & drop file CSV/Excel di sini atau klik untuk upload multiple file
-                            </p>
-                            <input type="file" id="input-ume" accept=".csv, .xlsx, .xls" multiple class="absolute inset-0 opacity-0 cursor-pointer w-full h-full"/>
-                        </div>
-                    </div>
-                    
-                    <div class="flex items-center justify-between gap-3 border-t border-slate-200 pt-3">
-                        <p id="status-ume" class="text-[10px] text-slate-500 font-medium italic">Ready for drop file.</p>
+                <!-- BOX UPLOAD UME (Tema Hijau) -->
+                <div id="dropzone-ume" class="relative border-2 border-dashed border-green-400 bg-green-50/60 hover:bg-green-100/70 transition-colors rounded-xl flex flex-col items-center justify-center min-h-[100px] text-center overflow-hidden shadow-sm backdrop-blur-sm">
+                    <input type="file" id="input-ume" accept=".csv, .xlsx, .xls" multiple class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10"/>
+                    <div id="status-ume" class="z-0 p-4 pointer-events-none flex flex-col items-center justify-center w-full">
+                        <h3 class="text-base sm:text-lg font-bold text-green-600 mb-1">Upload Data UME</h3>
+                        <p class="text-xs sm:text-sm text-green-500 font-medium">Drag & Drop file .XLSX atau .CSV di sini</p>
                     </div>
                 </div>
 
@@ -314,6 +288,7 @@
 
     </div>
 
+    <!-- FOOTER DI BAWAH SEMUA -->
     <div class="text-center text-[10px] sm:text-xs text-slate-500 shrink-0 p-4 font-medium tracking-wide border-t border-slate-200/50 mt-auto">
         © 2026 | Central Hub NOP Palangkaraya | Created with ❤️ by Fauzi Ramdani - 97122
     </div>
@@ -393,10 +368,8 @@
                     try {
                         const data = new Uint8Array(e.target.result);
                         const workbook = XLSX.read(data, { type: 'array' });
-                        // Ambil sheet pertama aja
                         const firstSheetName = workbook.SheetNames[0];
                         const worksheet = workbook.Sheets[firstSheetName];
-                        // Convert ke array of objects (Header otomatis di baris 1)
                         const json = XLSX.utils.sheet_to_json(worksheet, { defval: "" });
                         resolve(json);
                     } catch (error) {
@@ -410,104 +383,97 @@
 
 
         // ==========================================================
-        // LOGIKA AUTOMATIC & PARALLEL MULTIPLE UPLOAD (EXCEL/CSV CHUNKING)
+        // LOGIKA AUTOMATIC UPLOAD DENGAN PROGRESS REAL-TIME UI
         // ==========================================================
-        function setupAutoUpload(dropzoneId, inputId, statusId, tableName) {
+        function setupAutoUpload(dropzoneId, inputId, statusId, tableName, defaultTitle, defaultDesc, colorClass) {
             const dropzone = document.getElementById(dropzoneId);
             const fileInput = document.getElementById(inputId);
             const statusEl = document.getElementById(statusId);
 
-            fileInput.addEventListener('dragover', () => {
-                dropzone.classList.add('border-red-500', 'bg-red-50/50');
-            });
-            
-            fileInput.addEventListener('dragleave', () => {
-                dropzone.classList.remove('border-red-500', 'bg-red-50/50');
-            });
+            const renderUI = (title, subtitle) => {
+                statusEl.innerHTML = `
+                    <h3 class="text-base sm:text-lg font-bold ${colorClass} mb-1">${title}</h3>
+                    <p class="text-xs sm:text-sm ${colorClass} font-medium opacity-80">${subtitle}</p>
+                `;
+            };
 
-            fileInput.addEventListener('drop', () => {
-                dropzone.classList.remove('border-red-500', 'bg-red-50/50');
-            });
+            fileInput.addEventListener('dragover', () => dropzone.classList.add('opacity-70'));
+            fileInput.addEventListener('dragleave', () => dropzone.classList.remove('opacity-70'));
+            fileInput.addEventListener('drop', () => dropzone.classList.remove('opacity-70'));
 
             fileInput.addEventListener('change', async () => {
                 const files = fileInput.files;
                 if (files.length === 0) return;
 
-                let totalFiles = files.length;
-                let successfulUploads = 0;
-
-                statusEl.className = 'text-[10px] text-amber-600 font-bold italic';
-                
-                // Looping untuk eksekusi file satu per satu
-                for (let i = 0; i < totalFiles; i++) {
+                for (let i = 0; i < files.length; i++) {
                     const file = files[i];
                     
                     const isCsv = file.name.endsWith('.csv');
                     const isExcel = file.name.endsWith('.xlsx') || file.name.endsWith('.xls');
 
                     if (!isCsv && !isExcel) {
-                        statusEl.innerText = `File "${file.name}" ditolak formatnya (Hanya CSV/XLSX)! ❌`;
-                        statusEl.className = 'text-[10px] text-red-600 font-bold italic';
+                        renderUI(`Format Ditolak ❌`, file.name);
+                        await new Promise(r => setTimeout(r, 2000));
                         continue;
                     }
 
-                    statusEl.innerText = `Memproses file [${i + 1}/${totalFiles}]: ${file.name}... ⏳`;
+                    renderUI(`Membaca file... ⏳`, file.name);
 
                     try {
-                        let allData = [];
-                        
-                        // Parse sesuai format file
-                        if (isCsv) {
-                            allData = await parseCsv(file);
-                        } else {
-                            allData = await parseExcel(file);
-                        }
+                        let allData = isCsv ? await parseCsv(file) : await parseExcel(file);
 
                         const totalRecords = allData.length;
                         if (totalRecords === 0) {
-                            console.warn(`File ${file.name} kosong.`);
+                            renderUI(`File kosong`, file.name);
+                            await new Promise(r => setTimeout(r, 2000));
                             continue;
                         }
 
                         const chunkSize = 10000;
                         const promises = [];
+                        let uploadedRecords = 0;
 
-                        // Split data per 10k baris
+                        // Set UI awal upload
+                        renderUI(`Mengirim ke DB: 0 dari ${totalRecords} baris...`, file.name);
+
+                        // Potong per 10.000
                         for (let j = 0; j < totalRecords; j += chunkSize) {
                             const chunk = allData.slice(j, j + chunkSize);
-                            promises.push(supabaseClient.from(tableName).insert(chunk));
+                            
+                            // Bikin promise dengan side-effect update progress
+                            const p = supabaseClient.from(tableName).insert(chunk).then((res) => {
+                                if(res.error) throw res.error;
+                                uploadedRecords += chunk.length;
+                                // Update text real-time di UI
+                                renderUI(`Mengirim ke DB: ${uploadedRecords} dari ${totalRecords} baris...`, file.name);
+                            });
+                            promises.push(p);
                         }
 
-                        statusEl.innerText = `Mengupload ${promises.length} chunk dari file ${file.name}... 🚀`;
-
-                        // Eksekusi request insert paralel
-                        const uploadResults = await Promise.all(promises);
-                        const errorChunk = uploadResults.find(res => res.error);
+                        // Eksekusi paralel semua chunk
+                        await Promise.all(promises);
                         
-                        if (errorChunk) throw errorChunk.error;
-                        
-                        successfulUploads++;
                     } catch (err) {
                         console.error(`Gagal upload isi file ${file.name}:`, err);
-                        statusEl.innerText = `Gagal upload file ${file.name}!`;
-                        statusEl.className = 'text-[10px] text-red-600 font-bold italic';
+                        renderUI(`Upload Gagal ❌`, `Cek file atau koneksi lo.`);
+                        await new Promise(r => setTimeout(r, 3000));
                     }
                 }
 
-                // Final status setelah loop file beres
-                if (successfulUploads > 0) {
-                    statusEl.innerText = `Sukses! Berhasil upload ${successfulUploads} file ke ${tableName} 🎉`;
-                    statusEl.className = 'text-[10px] text-emerald-600 font-bold italic';
-                    alert(`Mantap Zi, ${successfulUploads} file berhasil masuk database.`);
-                }
-
-                fileInput.value = ''; // Reset slot input biar bisa dipake ulang
+                // Beres semua loop
+                renderUI(`Upload Selesai ✅`, `Semua file berhasil diproses.`);
+                fileInput.value = ''; // Reset slot input
+                
+                // Balikin ke UI semula setelah 3 detik
+                setTimeout(() => {
+                    renderUI(defaultTitle, defaultDesc);
+                }, 3000);
             });
         }
 
-        // Jalankan inisialisasi auto-upload untuk tabel inap_data dan ume_data
-        setupAutoUpload('dropzone-inap', 'input-inap', 'status-inap', 'inap_data');
-        setupAutoUpload('dropzone-ume', 'input-ume', 'status-ume', 'ume_data');
+        // Jalankan fungsi
+        setupAutoUpload('dropzone-inap', 'input-inap', 'status-inap', 'inap_data', 'Upload Data INAP', 'Drag & Drop file .XLSX atau .CSV di sini', 'text-blue-600');
+        setupAutoUpload('dropzone-ume', 'input-ume', 'status-ume', 'ume_data', 'Upload Data UME', 'Drag & Drop file .XLSX atau .CSV di sini', 'text-green-600');
     </script>
 </body>
 </html>
